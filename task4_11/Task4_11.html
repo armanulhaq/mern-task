@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    body {
+      background: linear-gradient(135deg, rgb(253, 231, 119), rgb(167, 73, 221));
+    }
+    
+    form {
+      max-width: 400px;
+      margin: 0 auto;
+    }
+    
+    label {
+      display: block;
+      margin-top: 10px;
+    }
+    
+    input[type="text"],
+    input[type="email"],
+    input[type="password"],
+    input[type="number"],
+    select {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      margin-top: 5px;
+    }
+    
+    .radio-group label {
+      display: inline-block;
+      margin-right: 10px;
+    }
+    
+    .checkbox-group label {
+      display: inline-block;
+      margin-right: 10px;
+    }
+    
+    .center {
+      text-align: center;
+    }
+    
+    #submit {
+      background-color: red;
+      color: white;
+      border-radius: 10px;
+    }
+    
+    .error-message {
+      color: red;
+      font-size: 12px;
+      margin-top: 5px;
+    }
+  </style>
+</head>
+<body>
+  <form onsubmit="return validateForm()">
+    <h2>Registration Form</h2>
+    <label for="firstName">First Name:</label>
+    <input type="text" id="firstName" name="firstName" required>
+    <div class="error-message" id="firstNameError"></div>
+    
+    <label for="lastName">Last Name:</label>
+    <input type="text" id="lastName" name="lastName" required>
+    <div class="error-message" id="lastNameError"></div>
+    
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" required>
+    <div class="error-message" id="emailError"></div>
+    
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password" required>
+    <div class="error-message" id="passwordError"></div>
+    
+    <label for="rePassword">Re-enter Password:</label>
+    <input type="password" id="rePassword" name="rePassword" required>
+    <div class="error-message" id="rePasswordError"></div>
+    
+    <label>Gender:</label>
+    <div class="radio-group">
+      <label for="male">
+        <input type="radio" id="male" name="gender" value="male" required>
+        Male
+      </label>
+      <label for="female">
+        <input type="radio" id="female" name="gender" value="female" required>
+        Female
+      </label>
+    </div>
+    <div class="error-message" id="genderError"></div>
+    
+    <label for="age">Age:</label>
+    <input type="number" id="age" name="age" required>
+    <div class="error-message" id="ageError"></div>
+    
+    <label for="phone">Phone Number:</label>
+    <input type="text" id="phone" name="phone" required>
+    <div class="error-message" id="phoneError"></div>
+    
+    <label for="address">Address:</label>
+    <input type="text" id="address" name="address" required>
+    <div class="error-message" id="addressError"></div>
+    
+    <label for="state">State:</label>
+    <input type="text" id="state" name="state" required>
+    <div class="error-message" id="stateError"></div>
+    
+    <label for="country">Country:</label>
+    <input type="text" id="country" name="country" required>
+    <div class="error-message" id="countryError"></div>
+    
+    <label>Languages Known:</label>
+    <div class="checkbox-group">
+      <label for="english">
+        <input type="checkbox" id="english" name="languages" value="english">
+        English
+      </label>
+      <label for="kannada">
+        <input type="checkbox" id="kannada" name="languages" value="kannada">
+        Kannada
+      </label>
+      <label for="telugu">
+        <input type="checkbox" id="telugu" name="languages" value="telugu">
+        Telugu
+      </label>
+      <label for="hindi">
+        <input type="checkbox" id="hindi" name="languages" value="hindi">
+        Hindi
+      </label>
+    </div>
+    
+    <label for="declaration">
+      <input type="checkbox" id="declaration" name="declaration" required>
+      I agree to the terms and conditions.
+    </label>
+    <div class="error-message" id="declarationError"></div>
+    
+    <p class="center">
+      <a href="https://www.ethnus.com" target="_blank">Visit Ethnus</a>
+    </p>
+    
+    <p class="center">
+      <input id="submit" type="submit" value="Register">
+    </p>
+  </form>
+
+  <script>
+    function validateForm() {
+      var firstName = document.getElementById("firstName").value;
+      var lastName = document.getElementById("lastName").value;
+      var email = document.getElementById("email").value;
+      var password = document.getElementById("password").value;
+      var rePassword = document.getElementById("rePassword").value;
+      var gender = document.querySelector('input[name="gender"]:checked');
+      var age = document.getElementById("age").value;
+      var phone = document.getElementById("phone").value;
+      var address = document.getElementById("address").value;
+      var state = document.getElementById("state").value;
+      var country = document.getElementById("country").value;
+      var declaration = document.getElementById("declaration").checked;
+      
+      var isValid = true;
+      
+      if (!firstName) {
+        document.getElementById("firstNameError").innerText = "Please enter your first name.";
+        isValid = false;
+      } else {
+        document.getElementById("firstNameError").innerText = "";
+      }
+      
+      if (!lastName) {
+        document.getElementById("lastNameError").innerText = "Please enter your last name.";
+        isValid = false;
+      } else {
+        document.getElementById("lastNameError").innerText = "";
+      }
+      
+      if (!email) {
+        document.getElementById("emailError").innerText = "Please enter a valid email address.";
+        isValid = false;
+      } else {
+        document.getElementById("emailError").innerText = "";
+      }
+      
+      if (!password) {
+        document.getElementById("passwordError").innerText = "Please enter a password.";
+        isValid = false;
+      } else {
+        document.getElementById("passwordError").innerText = "";
+      }
+      
+      if (password !== rePassword) {
+        document.getElementById("rePasswordError").innerText = "Passwords do not match.";
+        isValid = false;
+      } else {
+        document.getElementById("rePasswordError").innerText = "";
+      }
+      
+      if (!gender) {
+        document.getElementById("genderError").innerText = "Please select your gender.";
+        isValid = false;
+      } else {
+        document.getElementById("genderError").innerText = "";
+      }
+      
+      if (!age) {
+        document.getElementById("ageError").innerText = "Please enter your age.";
+        isValid = false;
+      } else {
+        document.getElementById("ageError").innerText = "";
+      }
+      
+      if (!phone) {
+        document.getElementById("phoneError").innerText = "Please enter your phone number.";
+        isValid = false;
+      } else {
+        document.getElementById("phoneError").innerText = "";
+      }
+      
+      if (!address) {
+        document.getElementById("addressError").innerText = "Please enter your address.";
+        isValid = false;
+      } else {
+        document.getElementById("addressError").innerText = "";
+      }
+      
+      if (!state) {
+        document.getElementById("stateError").innerText = "Please enter your state.";
+        isValid = false;
+      } else {
+        document.getElementById("stateError").innerText = "";
+      }
+      
+      if (!country) {
+        document.getElementById("countryError").innerText = "Please enter your country.";
+        isValid = false;
+      } else {
+        document.getElementById("countryError").innerText = "";
+      }
+      
+      if (!declaration) {
+        document.getElementById("declarationError").innerText = "Please agree to the terms and conditions.";
+        isValid = false;
+      } else {
+        document.getElementById("declarationError").innerText = "";
+      }
+      
+      return isValid;
+    }
+  </script>
+</body>
+</html>

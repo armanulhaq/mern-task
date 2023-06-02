@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 4_10</title>
+</head>
+<body>
+    <h1>Some important JS Array function</h1>
+    <p>Code is embedded in the html file</p>
+
+    <script>
+        // Create an array
+        var fruits = ['apple', 'banana', 'cherry'];
+
+        // concat: Combines multiple arrays
+        var combinedFruits = fruits.concat(['orange', 'grape']);
+        console.log(combinedFruits); // Output: ['apple', 'banana', 'cherry', 'orange', 'grape']
+
+        // copyWithin: Copies a portion of an array to another location within the same array
+        fruits.copyWithin(1, 0);
+        console.log(fruits); // Output: ['apple', 'apple', 'banana']
+
+        // map: Creates a new array with the results of calling a provided function on every element in the array
+
+        // every: Tests whether all elements in the array pass a certain condition
+        var allFruitsAreApples = fruits.every(function(fruit) {
+        return fruit === 'apple';
+        });
+        console.log(allFruitsAreApples); // Output: false
+
+        // some: Tests whether at least one element in the array passes a certain condition
+        var hasBananas = fruits.some(function(fruit) {
+        return fruit === 'banana';
+        });
+        console.log(hasBananas); // Output: true
+
+        // filter: Creates a new array with all elements that pass a certain condition
+        var filteredFruits = fruits.filter(function(fruit) {
+        return fruit.length > 5;
+        });
+        console.log(filteredFruits); // Output: ['banana']
+
+        // find: Returns the first element in the array that passes a certain condition
+        var foundFruit = fruits.find(function(fruit) {
+        return fruit === 'banana';
+        });
+        console.log(foundFruit); // Output: 'banana'
+
+        // findIndex: Returns the index of the first element in the array that passes a certain condition
+        var foundIndex = fruits.findIndex(function(fruit) {
+        return fruit === 'banana';
+        });
+        console.log(foundIndex); // Output: 2
+
+        // indexOf: Returns the first index at which a specific element is found in the array
+        var index = fruits.indexOf('banana');
+        console.log(index); // Output: 2
+
+        // lastIndexOf: Returns the last index at which a specific element is found in the array
+        var lastIndex = fruits.lastIndexOf('apple');
+        console.log(lastIndex); // Output: 1
+
+        // push: Adds one or more elements to the end of the array
+        fruits.push('kiwi');
+        console.log(fruits); // Output: ['apple', 'apple', 'banana', 'kiwi']
+
+        // pop: Removes the last element from the array
+        var removedFruit = fruits.pop();
+        console.log(removedFruit); // Output: 'kiwi'
+        console.log(fruits); // Output: ['apple', 'apple', 'banana']
+
+        // shift: Removes the first element from the array
+        var shiftedFruit = fruits.shift();
+        console.log(shiftedFruit); // Output: 'apple'
+        console.log(fruits); // Output: ['apple', 'banana']
+
+    </script>
+</body>
+</html>

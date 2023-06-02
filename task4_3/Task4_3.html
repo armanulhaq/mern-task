@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Contact Form</title>
+    <style>
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+        }
+
+        input[type="text"],
+        textarea {
+            width: 300px;
+            padding: 5px;
+            border: 1px solid #ccc;
+        }
+
+        .error-message {
+            color: red;
+            display: none;
+        }
+
+        .invalid-input {
+            border-color: red;
+        }
+    </style>
+    <script>
+        function validateForm() {
+            var nameInput = document.getElementById("name");
+            var emailInput = document.getElementById("email");
+            var websiteInput = document.getElementById("website");
+            var messageInput = document.getElementById("message");
+
+            var name = nameInput.value.trim();
+            var email = emailInput.value.trim();
+            var website = websiteInput.value.trim();
+            var message = messageInput.value.trim();
+
+            var isValid = true;
+
+            if (name === "") {
+                nameInput.classList.add("invalid-input");
+                document.getElementById("name-error").style.display = "block";
+                isValid = false;
+            } else {
+                nameInput.classList.remove("invalid-input");
+                document.getElementById("name-error").style.display = "none";
+            }
+
+            if (email === "" || !validateEmail(email)) {
+                emailInput.classList.add("invalid-input");
+                document.getElementById("email-error").style.display = "block";
+                isValid = false;
+            } else {
+                emailInput.classList.remove("invalid-input");
+                document.getElementById("email-error").style.display = "none";
+            }
+
+            if (website === "") {
+                websiteInput.classList.add("invalid-input");
+                document.getElementById("website-error").style.display = "block";
+                isValid = false;
+            } else if (!validateURL(website)) {
+                websiteInput.classList.add("invalid-input");
+                document.getElementById("website-error").textContent = "Please enter a valid website URL.";
+                isValid = false;
+            } else {
+                websiteInput.classList.remove("invalid-input");
+                document.getElementById("website-error").style.display = "none";
+            }
+
+            if (message === "") {
+                messageInput.classList.add("invalid-input");
+                document.getElementById("message-error").style.display = "block";
+                isValid = false;
+            } else {
+                messageInput.classList.remove("invalid-input");
+                document.getElementById("message-error").style.display = "none";
+            }
+
+            return isValid;
+        }
+
+        function validateEmail(email) {
+            var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return emailRegex.test(email);
+        }
+
+        function validateURL(url) {
+            var urlRegex = /^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/i;
+            return urlRegex.test(url);
+        }
+    </script>
+</head>
+<body>
+    <form onsubmit="return validateForm()">
+        <div class="form-group">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name">
+            <span class="error-message" id="name-error">This field is required</span>
+        </div>
+
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="text" id="email" name="email">
+            <span class="error-message" id="email-error">A valid email address is required.</span>
+        </div>
+
+        <div class="form-group">
+            <label for="website">Website:</label>
+            <input type="text" id="website" name="website">
+            <span class="error-message" id="website-error">A website URL is required.</span>
+        </div>
+
+        <div class="form-group">
+            <label for="message">Message:</label>
+            <textarea id="message" name="message"></textarea>
+            <span class="error-message" id="message-error">This field is required.</span>
+        </div>
+
+        <div class="form-group">
+            <button type="submit">Submit</button>
+        </div>
+    </form>
+</body>
+</html>

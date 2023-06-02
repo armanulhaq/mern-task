@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Task 4_8</title>
+  <style>
+    #train {
+        position: absolute;
+        top: 20%;
+        left: 0;
+        width: 100px;
+        height: 50px;
+        color: #fff;
+        padding: 10px;
+    }
+    </style>
+    </head>
+            <body>
+            <h1>Train Animation</h1>
+            <img src="https://img.freepik.com/premium-vector/toy-steam-train-with-passenger-car-flat-style-vector-illustration_710508-1717.jpg?w=2000" alt="" id="train">
+            <button id="start-btn">Start</button>
+            <button id="stop-btn">Stop</button>
+            <script>
+                // Get the train element
+            var train = document.getElementById("train");
+
+            // Set the initial position of the train
+            var position = 0;
+
+            // Set the animation speed (in milliseconds)
+            var animationSpeed = 10;
+
+            // Variable to hold the animation interval
+            var animationInterval;
+
+            // Function to start the train animation
+            function startTrain() {
+            // Clear any existing animation interval
+            clearInterval(animationInterval);
+            
+            // Start a new animation interval
+            animationInterval = setInterval(moveTrain, animationSpeed);
+            }
+
+            // Function to stop the train animation
+            function stopTrain() {
+            // Clear the animation interval
+            clearInterval(animationInterval);
+            }
+
+            // Function to move the train
+            function moveTrain() {
+            // Update the position of the train
+            position++;
+            
+            // Set the left CSS property of the train element
+            train.style.left = position + "px";
+            }
+
+            // Event listeners for start and stop buttons
+            document.getElementById("start-btn").addEventListener("click", startTrain);
+            document.getElementById("stop-btn").addEventListener("click", stopTrain);
+    </script>
+</body>
+</html>
